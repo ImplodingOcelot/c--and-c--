@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 std::string root, type, answer, ed1, ed2, ed3, form, tens, ones, Ften1, Fone1;
-int word_type, personal, number, runthrough, ranthrough, tense, level, numb_type, ntens, nones, Ften, Fone, numberOutput, tenSwitcher, oneSwitcher;
+int word_type, personal, number, runthrough, ranthrough, tense, level, numb_type, ntens, nones, Ften, Fone, numberOutput;
 bool irregular;
 
 bool hasEnding(std::string const &fullString, std::string const &ending)
@@ -405,80 +405,14 @@ int main()
                 std::cout << "What is in the ones place (Spelling still matters): ";
                 std::cin >> ones;
                 numbers_switcher();
-                switch (tenSwitcher)
-                {
-                case 1:
-                    Ften = 10;
-                    break;
-                case 2:
-                    Ften = 20;
-                    break;
-                case 3:
-                    Ften = 30;
-                    break;
-                case 4:
-                    Ften = 40;
-                    break;
-                case 5:
-                    Ften = 50;
-                    break;
-                case 6:
-                    Ften = 60;
-                    break;
-                case 7:
-                    Ften = 70;
-                    break;
-                case 8:
-                    Ften = 80;
-                    break;
-                case 9:
-                    Ften = 90;
-                    break;
-                case 10:
-                    Ften = 100;
-                    break;
-                }
-                switch (oneSwitcher)
-                {
-                case 1:
-                    Fone = 1;
-                    break;
-                case 2:
-                    Fone = 2;
-                    break;
-                case 3:
-                    Fone = 3;
-                    break;
-                case 4:
-                    Fone = 4;
-                    break;
-                case 5:
-                    Fone = 5;
-                    break;
-                case 6:
-                    Fone = 6;
-                    break;
-                case 7:
-                    Fone = 7;
-                    break;
-                case 8:
-                    Fone = 8;
-                    break;
-                case 9:
-                    Fone = 9;
-                    break;
-                case 10:
-                    Fone = 10;
-                    break;
-                }
                 numberOutput = Ften + Fone;
-                std::cout << "The number in 1/2/3 form is:" << numberOutput << "\n";
+                std::cout << "The number in numberical form is:" << numberOutput << "\n";
             }
             else if (numb_type == 2)
             {
-                std::cout << "What is in the tens place?\n";
+                std::cout << "What is in the tens place?";
                 std::cin >> ntens;
-                std::cout << "What is in the ones place?\n";
+                std::cout << "What is in the ones place?";
                 std::cin >> nones;
             }
         }
@@ -1321,80 +1255,83 @@ void numbers_switcher()
     // TENS ---------------
     if (tens == "diez")
     {
-        tenSwitcher = 1;
+        Ften = 1;
     }
     else if (tens == "veinte")
     {
-        tenSwitcher = 2;
+        Ften = 2;
     }
     else if (tens == "treinta")
     {
-        tenSwitcher = 3;
+        Ften = 3;
     }
     else if (tens == "cuarenta")
     {
-        tenSwitcher = 4;
+        Ften = 4;
     }
     else if (tens == "cincuenta")
     {
-        tenSwitcher = 5;
+        Ften = 5;
     }
     else if (tens == "sesenta")
     {
-        tenSwitcher = 6;
+        Ften = 6;
     }
     else if (tens == "setenta")
     {
-        tenSwitcher = 7;
+        Ften = 7;
     }
     else if (tens == "ochenta")
     {
-        tenSwitcher = 8;
+        Ften = 8;
     }
     else if (tens == "noventa")
     {
-        tenSwitcher = 9;
+        Ften = 9;
     }
     else if (tens == "cien")
     {
-        tenSwitcher = 10;
+        Ften = 10;
     }
     // ONES ---------------------------------------
     // --------------------------------------------
-    if (ones == "uno")
+    if(ones == "cero")  {
+        Fone = 0;
+    }
+    else if (ones == "uno")
     {
-        oneSwitcher = 1;
+        Fone = 1;
     }
     else if (ones == "dos")
     {
-        oneSwitcher = 2;
+        Fone = 2;
     }
     else if (ones == "tres")
     {
-        oneSwitcher = 3;
+        Fone = 3;
     }
     else if (ones == "cuatro")
     {
-        oneSwitcher = 4;
+        Fone = 4;
     }
     else if (ones == "cinco")
     {
-        oneSwitcher = 5;
+        Fone = 5;
     }
     else if (ones == "sies")
     {
-        oneSwitcher = 6;
+        Fone = 6;
     }
     else if (ones == "siete")
     {
-        oneSwitcher = 7;
+        Fone = 7;
     }
     else if (ones == "ocho")
     {
-        oneSwitcher = 8;
+        Fone = 8;
     }
     else if (ones == "noventa")
     {
-        oneSwitcher = 9;
+        Fone = 9;
     }
 }
