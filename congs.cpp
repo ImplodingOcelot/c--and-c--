@@ -2,14 +2,18 @@
 #include <iostream>
 #include <vector>
 #include <string>
-std::string root, type, answer, ed1, ed2, ed3;
-int word_type, personal, number, runthrough, ranthrough, tense, level;
+std::string root, type, answer, ed1, ed2, ed3, form, tens, ones, Ften1, Fone1;
+int word_type, personal, number, runthrough, ranthrough, tense, level, numb_type, ntens, nones, Ften, Fone;
 bool irregular;
 
-bool hasEnding (std::string const &fullString, std::string const &ending) {
-    if (fullString.length() >= ending.length()) {
-        return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
-    } else {
+bool hasEnding(std::string const &fullString, std::string const &ending)
+{
+    if (fullString.length() >= ending.length())
+    {
+        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+    }
+    else
+    {
         return false;
     }
 }
@@ -29,194 +33,322 @@ int main()
     std::cout << "What spanish level are you in (ex. '1' for spanish 1): ";
     std::cin >> level;
     std::cout << "For refrence: type 'e' to exit.\n";
+    std::cout << "Would you like the congjugator (c) or would you like the numbers (n)?\n";
+    std::cin >> form;
     // runsthrough amount of times entered
     for (ranthrough = 0; runthrough >= ranthrough; ranthrough++)
     {
-        ed1 = "ar", ed2 = "er", ed3 = "ir";
-        std::cout << "Please enter a root word: ";
-        std::cin >> root;
-        std::cout << "Using '" << root << "' as root.\n";
-        // determines current ending
-        if (hasEnding(root,ed1) == true)
+        if (form == "c" || form == "congjugator")
         {
-            word_type = 1;
-        }
-        else if (hasEnding(root,ed2) == true)
-        {
-            word_type = 2;
-        }
-        else if (hasEnding(root,ed3) == true)
-        {
-            word_type = 3;
-        }
-        else
-        {
-            std::cout << "That root is shit, but fine...\n";
-        }
-        if (root == "ir") // corrects for 2 letter root "ir"
-        {
-            root = "placeholder";
-        }
-        root.pop_back();
-        root.pop_back();
-        // determines ending wanted
-        std::cout << "Are you talking in 1st, 2nd or 3rd person?\n"
-                  << "Use 1/2/3 for your answer.\n";
-        std::cin >> personal;
-        std::cout << "Are you talking about multiple people?\n"
-                  << "Use 1 for one person; 2 for multiple people.\n";
-        std::cin >> number;
-        if (level != 1)
-        {
-            std::cout << "Is this Past Tense (1); Present Tense (2); or Future Tense (3)?\n";
-            std::cin >> tense;
-        }
-        if(level == 1)  {
-            irregular= false;
-            tense = 2;
-        }
-        // checks & fixes irregular vars - irregular roots go through diffrent function
-        if (tense == 1)
-        {
-            past_irregularity_fixer();
-        }
-        else if (tense == 2)
-        {
-            irregularity_fixer();
-        }
-        else if (tense == 3)
-        {
-            future_irregularity_fixer();
-        }
-        // appends ending if its not an irregular
-        if (irregular == false || level == 1)
-        {
-            // PAST tense -----------------------------------------------------------------------------
+            ed1 = "ar", ed2 = "er", ed3 = "ir";
+            std::cout << "Please enter a root word: ";
+            std::cin >> root;
+            std::cout << "Using '" << root << "' as root.\n";
+            // determines current ending
+            if (hasEnding(root, ed1) == true)
+            {
+                word_type = 1;
+            }
+            else if (hasEnding(root, ed2) == true)
+            {
+                word_type = 2;
+            }
+            else if (hasEnding(root, ed3) == true)
+            {
+                word_type = 3;
+            }
+            else
+            {
+                std::cout << "That root is shit, but fine...\n";
+            }
+            if (root == "ir") // corrects for 2 letter root "ir"
+            {
+                root = "placeholder";
+            }
+            root.pop_back();
+            root.pop_back();
+            // determines ending wanted
+            std::cout << "Are you talking in 1st, 2nd or 3rd person?\n"
+                      << "Use 1/2/3 for your answer.\n";
+            std::cin >> personal;
+            std::cout << "Are you talking about multiple people?\n"
+                      << "Use 1 for one person; 2 for multiple people.\n";
+            std::cin >> number;
+            if (level != 1)
+            {
+                std::cout << "Is this Past Tense (1); Present Tense (2); or Future Tense (3)?\n";
+                std::cin >> tense;
+            }
+            if (level == 1)
+            {
+                irregular = false;
+                tense = 2;
+            }
+            // checks & fixes irregular vars - irregular roots go through diffrent function
             if (tense == 1)
             {
-                if (word_type == 3)
+                past_irregularity_fixer();
+            }
+            else if (tense == 2)
+            {
+                irregularity_fixer();
+            }
+            else if (tense == 3)
+            {
+                future_irregularity_fixer();
+            }
+            // appends ending if its not an irregular
+            if (irregular == false || level == 1)
+            {
+                // PAST tense -----------------------------------------------------------------------------
+                if (tense == 1)
                 {
-                    word_type = 2; // quick fix for -ir and -er being the same in past
+                    if (word_type == 3)
+                    {
+                        word_type = 2; // quick fix for -ir and -er being the same in past
+                    }
+                    if (personal == 1)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("é");
+                                break;
+                            case 2:
+                                root.append("amos");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("í");
+                                break;
+                            case 2:
+                                root.append("imos");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                    else if (personal == 2)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("aste");
+                                break;
+                            case 2:
+                                root.append("asteis");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("iste");
+                                break;
+                            case 2:
+                                root.append("isteis");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                    else if (personal == 3)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("ó");
+                                break;
+                            case 2:
+                                root.append("aron");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("ió");
+                                break;
+                            case 2:
+                                root.append("ieron");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
                 }
-                if (personal == 1)
+                // PRESENT TENSE --------------------------------------------------------------------------
+                if (tense == 2)
                 {
-                    if (word_type == 1)
+                    if (personal == 1)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("o");
+                                break;
+                            case 2:
+                                root.append("amos");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("o");
+                                break;
+                            case 2:
+                                root.append("emos");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 3)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("o");
+                                break;
+                            case 2:
+                                root.append("imos");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                    else if (personal == 2)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("as");
+                                break;
+                            case 2:
+                                root.append("áis");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("es");
+                                break;
+                            case 2:
+                                root.append("éis");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 3)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("es");
+                                break;
+                            case 2:
+                                root.append("ís");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                    else if (personal == 3)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("a");
+                                break;
+                            case 2:
+                                root.append("an");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("e");
+                                break;
+                            case 2:
+                                root.append("en");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 3)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("e");
+                                break;
+                            case 2:
+                                root.append("en");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                }
+                // FUTURE TENSE ---------------------------------------------------------------------------
+                if (tense == 3)
+                {
+                    if (personal == 1)
                     {
                         switch (number)
                         {
                         case 1:
                             root.append("é");
-                            break;
-                        case 2:
-                            root.append("amos");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    else if (word_type == 2)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("í");
-                            break;
-                        case 2:
-                            root.append("imos");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                }
-                else if (personal == 2)
-                {
-                    if (word_type == 1)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("aste");
-                            break;
-                        case 2:
-                            root.append("asteis");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    else if (word_type == 2)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("iste");
-                            break;
-                        case 2:
-                            root.append("isteis");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                }
-                else if (personal == 3)
-                {
-                    if (word_type == 1)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("ó");
-                            break;
-                        case 2:
-                            root.append("aron");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    if (word_type == 2)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("ió");
-                            break;
-                        case 2:
-                            root.append("ieron");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                }
-            }
-            // PRESENT TENSE --------------------------------------------------------------------------
-            if (tense == 2)
-            {
-                if (personal == 1)
-                {
-                    if (word_type == 1)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("o");
-                            break;
-                        case 2:
-                            root.append("amos");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    else if (word_type == 2)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("o");
                             break;
                         case 2:
                             root.append("emos");
@@ -225,43 +357,12 @@ int main()
                             std::cout << "you good bro?\n";
                         }
                     }
-                    else if (word_type == 3)
+                    else if (personal == 2)
                     {
                         switch (number)
                         {
                         case 1:
-                            root.append("o");
-                            break;
-                        case 2:
-                            root.append("imos");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                }
-                else if (personal == 2)
-                {
-                    if (word_type == 1)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("as");
-                            break;
-                        case 2:
-                            root.append("áis");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    else if (word_type == 2)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("es");
+                            root.append("ás");
                             break;
                         case 2:
                             root.append("éis");
@@ -270,60 +371,15 @@ int main()
                             std::cout << "you good bro?\n";
                         }
                     }
-                    else if (word_type == 3)
+                    else if (personal == 3)
                     {
                         switch (number)
                         {
                         case 1:
-                            root.append("es");
+                            root.append("á");
                             break;
                         case 2:
-                            root.append("ís");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                }
-                else if (personal == 3)
-                {
-                    if (word_type == 1)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("a");
-                            break;
-                        case 2:
-                            root.append("an");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    if (word_type == 2)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("e");
-                            break;
-                        case 2:
-                            root.append("en");
-                            break;
-                        default:
-                            std::cout << "you good bro?\n";
-                        }
-                    }
-                    else if (word_type == 3)
-                    {
-                        switch (number)
-                        {
-                        case 1:
-                            root.append("e");
-                            break;
-                        case 2:
-                            root.append("en");
+                            root.append("án");
                             break;
                         default:
                             std::cout << "you good bro?\n";
@@ -331,57 +387,59 @@ int main()
                     }
                 }
             }
-            // FUTURE TENSE ---------------------------------------------------------------------------
-            if (tense == 3)
-            {
-                if (personal == 1)
-                {
-                    switch (number)
-                    {
+            // outputs new conjgation
+            std::cout << "The correct conjugation is:\n"
+                      << root << "\n";
+            std::cout << "\n";
+            // CONG END ---------------------------------
+
+        } else if(form == "n" || form == "numbers") {
+            std::cout << "Is your number in word form (1) or number form (2)?\n";
+            std::cin >> numb_type;
+            if(numb_type == 1)  {
+                std::cout << "What is in the tens place (Spelling matters)\n";
+                std::cin >> tens;
+                std::cin << "What is in the ones place (Spelling still matters)\n";
+                std::cin >> ones;
+                switch(tens)    {
                     case 1:
-                        root.append("é");
-                        break;
+                    Ften = "diez";
+                    break;
                     case 2:
-                        root.append("emos");
-                        break;
-                    default:
-                        std::cout << "you good bro?\n";
-                    }
+                    Ften = "viente";
+                    break;
+                    case 3:
+                    Ften = "";
+                    break;
+                    case 4:
+                    Ften = "Quarenta";
+                    break;
+                    case 5:
+                    Ften = "Cinuenta";
+                    break;
+                    case 6:
+                    Ften = "Sesenta";
+                    break;
+                    case 7:
+                    Ften = "Setenta";
+                    break;
+                    case 8:
+                    Ften = "Ochenta";
+                    break;
+                    case 9:
+                    Ften = "Noventa";
+                    break;
+                    case 10:
+                    Ften = "Cien";
+                    break;
                 }
-                else if (personal == 2)
-                {
-                    switch (number)
-                    {
-                    case 1:
-                        root.append("ás");
-                        break;
-                    case 2:
-                        root.append("éis");
-                        break;
-                    default:
-                        std::cout << "you good bro?\n";
-                    }
-                }
-                else if (personal == 3)
-                {
-                    switch (number)
-                    {
-                    case 1:
-                        root.append("á");
-                        break;
-                    case 2:
-                        root.append("án");
-                        break;
-                    default:
-                        std::cout << "you good bro?\n";
-                    }
-                }
+            }else if(numb_type == 2)    {
+                std::cout << "What is in the tens place?\n";
+                std::cin >> ntens;
+                std::cin << "What is in the ones place?\n";
+                std::cin >> nones;
             }
         }
-        // outputs new conjgation
-        std::cout << "The correct conjugation is:\n"
-                  << root << "\n";
-        std::cout << "\n";
     }
 }
 // diffrent areas to paste on ending
