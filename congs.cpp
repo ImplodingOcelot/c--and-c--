@@ -427,9 +427,10 @@ int main()
                     }
                     else if (onesTrue == false && tensTrue == false)
                     {
-                        std::cout << "cero"
+                        std::cout << "cero, are you dumb?"
                                   << "\n";
                     }
+                    std::cout << tensTrue << "\n" << onesTrue << "\n";
                 }
             }
         }
