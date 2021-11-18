@@ -2,26 +2,17 @@
 #include <iostream>
 #include <vector>
 #include <string>
-std::string root, type, answer, ed1, ed2, ed3, form, tens, ones, Ften1, Fone1;
-int word_type, personal, number, runthrough, ranthrough, tense, level, numb_type, ntens, nones, Ften, Fone, numberOutput;
-bool irregular;
-
-bool hasEnding(std::string const &fullString, std::string const &ending)
-{
-    if (fullString.length() >= ending.length())
-    {
-        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
-    }
-    else
-    {
-        return false;
-    }
-}
+std::string root, type, answer, ed1, ed2, ed3, form, tens, ones, Ften1, Fone1, outTens, outOnes, empty, irregular_output;
+int word_type, personal, number, runthrough, ranthrough, tense, level, numb_type, ntens, nones, Ften, Fone, numberOutput, placeholder;
+bool irregular, onesTrue, tensTrue, irregular_n;
 
 void irregularity_fixer();
 void past_irregularity_fixer();
 void future_irregularity_fixer();
 void numbers_switcher();
+void words_switcher();
+void irregular_number();
+bool hasEnding(std::string const &fullString, std::string const &ending);
 
 int main()
 {
@@ -410,10 +401,36 @@ int main()
             }
             else if (numb_type == 2)
             {
-                std::cout << "What is in the tens place?";
+                std::cout << "What is in the tens place?\n";
                 std::cin >> ntens;
-                std::cout << "What is in the ones place?";
+                std::cout << "What is in the ones place?\n";
                 std::cin >> nones;
+                irregular_number();
+                if (irregular_n == true)
+                {
+                    std::cout << irregular_output << "\n";
+                }
+                if (irregular_n == false)
+                {
+                    words_switcher();
+                    if (onesTrue == true && tensTrue == true)
+                    {
+                        std::cout << outTens << " y " << outOnes << "\n";
+                    }
+                    else if (onesTrue == false && tensTrue == true)
+                    {
+                        std::cout << outTens << "\n";
+                    }
+                    else if (onesTrue == true && tensTrue == false)
+                    {
+                        std::cout << outOnes << "\n";
+                    }
+                    else if (onesTrue == false && tensTrue == false)
+                    {
+                        std::cout << "cero"
+                                  << "\n";
+                    }
+                }
             }
         }
     }
@@ -1295,7 +1312,8 @@ void numbers_switcher()
     }
     // ONES ---------------------------------------
     // --------------------------------------------
-    if(ones == "cero")  {
+    if (ones == "cero")
+    {
         Fone = 0;
     }
     else if (ones == "uno")
@@ -1333,5 +1351,189 @@ void numbers_switcher()
     else if (ones == "noventa")
     {
         Fone = 9;
+    }
+}
+void words_switcher()
+{
+    tensTrue = false;
+    switch (ntens)
+    {
+    case 0:
+        placeholder++;
+        tensTrue = false;
+    case 1:
+        outTens = "diez";
+        tensTrue = true;
+        break;
+    case 2:
+        outTens = "viente";
+        tensTrue = true;
+        break;
+    case 3:
+        outTens = "trienta";
+        tensTrue = true;
+        break;
+    case 4:
+        outTens = "quarenta";
+        tensTrue = true;
+        break;
+    case 5:
+        outTens = "cincuenta";
+        tensTrue = true;
+        break;
+    case 6:
+        outTens = "sesenta";
+        tensTrue = true;
+        break;
+    case 7:
+        outTens = "setenta";
+        tensTrue = true;
+        break;
+    case 8:
+        outTens = "ochenta";
+        tensTrue = true;
+        break;
+    case 9:
+        outTens = "noventa";
+        tensTrue = true;
+        break;
+    }
+    onesTrue = false;
+    switch (nones)
+    {
+    case 0:
+        placeholder++;
+        onesTrue = false;
+        break;
+    case 1:
+        outOnes = "uno";
+        onesTrue = true;
+        break;
+    case 2:
+        outOnes = "dos";
+        onesTrue = true;
+        break;
+    case 3:
+        outOnes = "tres";
+        onesTrue = true;
+        break;
+    case 4:
+        outOnes = "cuatro";
+        onesTrue = true;
+        break;
+    case 5:
+        outOnes = "cinco";
+        onesTrue = true;
+        break;
+    case 6:
+        outOnes = "sies";
+        onesTrue = true;
+        break;
+    case 7:
+        outOnes = "siete";
+        onesTrue = true;
+        break;
+    case 8:
+        outOnes = "ocho";
+        onesTrue = true;
+        break;
+    case 9:
+        outOnes = "nueve";
+        onesTrue = true;
+        break;
+    }
+}
+void irregular_number()
+{
+    if (ntens == 20 && nones != 0)
+    {
+        irregular_n = true;
+        if (nones == 1)
+        {
+            irregular_output = "vientiuno";
+        }
+        else if (nones == 2)
+        {
+            irregular_output = "vientidos";
+        }
+        else if (nones == 3)
+        {
+            irregular_output = "vientitres";
+        }
+        else if (nones == 4)
+        {
+            irregular_output = "vienticuatro";
+        }
+        else if (nones == 5)
+        {
+            irregular_output = "vienticinco";
+        }
+        else if (nones == 6)
+        {
+            irregular_output = "vientisies";
+        }
+        else if (nones == 7)
+        {
+            irregular_output = "vientisiete";
+        }
+        else if (nones == 8)
+        {
+            irregular_output = "vientiocho";
+        }
+        else if (nones == 9)
+        {
+            irregular_output = "vientinueve";
+        }
+    }
+    else if (ntens == 1 && nones != 0)
+    {
+        irregular_n = true;
+        if (nones == 1)
+        {
+            irregular_output = "once";
+        }
+        else if (nones == 2)
+        {
+            irregular_output = "doce";
+        }
+        else if (nones == 3)
+        {
+            irregular_output = "trece";
+        }
+        else if (nones == 4)
+        {
+            irregular_output = "catorse";
+        }
+        else if (nones == 5)
+        {
+            irregular_output = "quince";
+        }
+        else if (nones == 6)
+        {
+            irregular_output = "dieciseis";
+        }
+        else if (nones == 7)
+        {
+            irregular_output = "diecisiete";
+        }
+        else if (nones == 8)
+        {
+            irregular_output = "dieciocho";
+        }
+        else if (nones == 9)
+        {
+            irregular_output = "diecinueve";
+        }
+    }
+}
+bool hasEnding(std::string const &fullString, std::string const &ending)
+{
+    if (fullString.length() >= ending.length())
+    {
+        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+    }
+    else
+    {
+        return false;
     }
 }
