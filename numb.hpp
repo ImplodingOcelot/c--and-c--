@@ -5,10 +5,11 @@
 
 void numbers();
 void eng_numb_form();
+void eng_word_form();
 
 // declare
-int number_form, inserted10, insetred1, og_lang, has1eng, has10eng;
-std::string output10, output1;
+int number_form, inserted10, insetred1, og_lang, has1eng, has10eng, has10eng2, has1eng2;
+std::string output10, output1, eng_in1, eng_in10, eng_out10, eng_out1;
 bool irregular_numb;
 
 void numbers()
@@ -27,6 +28,10 @@ void numbers()
             std::cout << "What would you like in the ones place?\n";
             std::cin >> inserted1;
             eng_numb_form();
+            if (irregular_numb != true)
+            {
+                irregular_numb = false;
+            }
             if (has10eng == 1 && has1eng == 1 && irregular_numb == false) // like 93
             {
                 std::cout << output10 << " y " << output1 << "\n";
@@ -46,10 +51,31 @@ void numbers()
         }
         else if (number_form == 2) // numbers like ninety three
         {
+            std::cout << "What word goes in the tens place?\n";
+            std::cin >> eng_in10;
+            std::cout << "What word goes in the ones place?\n";
+            std::cin >> eng_in1;
+            eng_word_form();
+            if (irregular_numb != true)
+            {
+                irregular_numb = false;
+            }
+            if(irregular_numb == false) {
+                if(has10eng2 == true && has1eng2 == true)   {
+
+                }else if(has10eng2 == false && has1eng2 == true)    {
+
+                }else if(has10eng == true && has1eng2 == false) {
+
+                }else if(has10eng == false && has1eng2 == false)    {
+                    std::cout << "cero";
+                }
+            }
         }
         else
         {
             std::cout << "Thats not valid, if this is an error please tell me. Restarting numbers...\n";
+            number_form = nullptr; // issue maybe
             numbers();
         }
     }
@@ -148,4 +174,111 @@ void eng_numb_form()
         has1eng = 0;
         break;
     }
+}
+
+void eng_word_form()
+{
+
+    if (eng_in10 == "ten") // tens
+    {
+        eng_out10 = "diez";
+        irregular_numb = true;
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "twenty")
+    {
+        eng_out10 = "viente";
+        irregular_numb = true;
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "thirty")
+    {
+        eng_out10 = "trienta";
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "fourty")
+    {
+        eng_out10 = "quarenta";
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "fifty")
+    {
+        eng_out10 = "cinquenta";
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "sixty")
+    {
+        eng_out10 = "sesenta";
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "seventy")
+    {
+        eng_out10 = "sestenta";
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "eighty")
+    {
+        eng_out10 = "ochenta";
+        has10eng2 = 1;
+    }
+    else if (eng_in10 == "ninety")
+    {
+        eng_out10 = "noventa";
+        has10eng2 = 1;
+    } else {
+        has10eng2 = 0;
+    }
+
+    // ONES
+
+    if (eng_in1 == "one") // tens
+    {
+        eng_out10 = "uno";
+        irregular_numb = true;
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "two")
+    {
+        eng_out10 = "dos";
+        irregular_numb = true;
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "three")
+    {
+        eng_out10 = "tres";
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "four")
+    {
+        eng_out10 = "cuatro";
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "five")
+    {
+        eng_out10 = "cinco";
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "six")
+    {
+        eng_out10 = "sies";
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "seven")
+    {
+        eng_out10 = "siete";
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "eight")
+    {
+        eng_out10 = "ocho";
+        has1eng2 = 1;
+    }
+    else if (eng_in1 == "nine")
+    {
+        eng_out10 = "nueve";
+        has1eng2 = 1;
+    } else {
+        has1eng2 = 0;
+    }
+
 }
