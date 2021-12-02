@@ -7,8 +7,9 @@ void numbers();
 void eng_numb_form();
 
 // declare
-int number_form, inserted10, insetred1, og_lang;
+int number_form, inserted10, insetred1, og_lang, has1eng, has10eng;
 std::string output10, output1;
+bool irregular_numb;
 
 void numbers()
 {
@@ -26,6 +27,22 @@ void numbers()
             std::cout << "What would you like in the ones place?\n";
             std::cin >> inserted1;
             eng_numb_form();
+            if (has10eng == 1 && has1eng == 1 && irregular_numb == false) // like 93
+            {
+                std::cout << output10 << " y " << output1 << "\n";
+            }
+            else if (has10eng == 0 && has1eng == 1) // like 3
+            {
+                std::cout << output1 << "\n";
+            }
+            else if (has10eng == 1 && has1eng == 0) // like 90
+            {
+                std::cout << output10 << "\n";
+            }
+            else if (has10eng == 0 && has1eng == 0) // only 0
+            {
+                std::cout << "cero\n";
+            }
         }
         else if (number_form == 2) // numbers like ninety three
         {
@@ -38,40 +55,97 @@ void numbers()
     }
 }
 
-void eng_numb_form()    {
+void eng_numb_form()
+{
 
     // checking 10s place
-    switch(inserted10)  {
-        case 0:
-        // code
+    switch (inserted10)
+    {
+    case 1:
+        output10 = "diez"; // irregular
+        has10eng = 1;
+        irregular_numb = true;
         break;
-        case 1:
-        // code
+    case 2:
+        output10 = "viente";
+        has10eng = 1;
+        irregular_numb = true;
         break;
-        case 2:
-        // code
+    case 3:
+        output10 = "treinta";
+        has10eng = 1;
         break;
-        case 3:
-        // code
+    case 4:
+        output10 = "quarenta";
+        has10eng = 1;
         break;
-        case 4:
-        // code
+    case 5:
+        output10 = "cincuenta";
+        has10eng = 1;
         break;
-        case 5:
-        // code
+    case 6:
+        output10 = "sesenta";
+        has10eng = 1;
         break;
-        case 6:
-        // code
+    case 7:
+        output10 = "setenta";
+        has10eng = 1;
         break;
-        case 7:
-        // code
+    case 8:
+        output10 = "ochenta";
+        has10eng = 1;
         break;
-        case 8:
-        // code
+    case 9:
+        output10 = "noventa";
+        has10eng = 1;
         break;
-        case 9:
-        // code
+    default:
+        output10 = "";
+        has10eng = 0;
         break;
     }
-
+    // checking the ones
+    switch (insetred1)
+    {
+    case 1:
+        output1 = "uno";
+        has1eng = 1;
+        break;
+    case 2:
+        output1 = "dos";
+        has1eng = 1;
+        break;
+    case 3:
+        output1 = "tres";
+        has1eng = 1;
+        break;
+    case 4:
+        output1 = "quatro";
+        has1eng = 1;
+        break;
+    case 5:
+        output1 = "cinco";
+        has1eng = 1;
+        break;
+    case 6:
+        output1 = "sies";
+        has1eng = 1;
+        break;
+    case 7:
+        output1 = "siete";
+        has1eng = 1;
+        break;
+    case 8:
+        output1 = "ocho";
+        has1eng = 1;
+        break;
+    case 9:
+        output1 = "nueve";
+        has1eng = 1;
+        break;
+    default:
+        output1 = "";
+        has1eng = 0;
+        break;
+    }
 }
