@@ -7,7 +7,10 @@ std::string root, type, answer, ed1, ed2, ed3, form, tens, ones, Ften1, Fone1, o
 int word_type, personal, number, runthrough, ranthrough, tense, level, numb_type, ntens, nones, Ften, Fone, numberOutput, placeholder;
 bool irregular, onesTrue, tensTrue, irregular_n;
 
-// ending
+// french declorations
+int irregular_type_french;
+std::string ed4, ed5, ed6, ed7, ed8, ed9, ed10, ed11, ed12, ed13, ed14;
+// ending checker
 bool hasEnding(std::string const &fullString, std::string const &ending);
 
 // spanish void decs.
@@ -17,6 +20,8 @@ void future_irregularity_fixer();
 void numbers_switcher();
 void words_switcher();
 void irregular_number();
+// french void decs.
+void common_french_irregularity_fixer();
 
 int main()
 {
@@ -26,7 +31,7 @@ int main()
     std::cin >> runthrough;
     runthrough = runthrough - 1;
     // determines language
-    std::cout << "What language do you want (Spanish (s) or French (f))\n";
+    std::cout << "What language do you want (Spanish (s) or French (f?\n";
     std::cin >> language;
     if (language == "s" || language == "spanish")
     {
@@ -90,7 +95,7 @@ int main()
                 {
                     past_irregularity_fixer();
                 }
-                else if (tense == 2)
+                else if (tense == 2 && level != 1)
                 {
                     irregularity_fixer();
                 }
@@ -99,7 +104,7 @@ int main()
                     future_irregularity_fixer();
                 }
                 // appends ending if its not an irregular
-                if (irregular == false || level == 1)
+                if (irregular == false)
                 {
                     // PAST tense -----------------------------------------------------------------------------
                     if (tense == 1)
@@ -445,21 +450,268 @@ int main()
                 }
             }
         }
-    }else if(language == "f" || language == "french")   {
+    }
+    else if (language == "f" || language == "french")
+    {
         std::cout << "What french level are you in (ex. '1' for french 1): ";
         std::cin >> level;
         std::cout << "For refrence: type 'e' to exit.\n";
         std::cout << "Would you like the congjugator (c) or would you like the numbers (n)?\n";
-        std::cout << "Currently, numbers are not coded because I have a life."
         std::cin >> form;
-        for (ranthrough = 0; runthrough >= ranthrough; ranthrough++)   {
-            
+        if (form == "c")
+        {
+            std::cout << "Please enter a root word:";
+            std::cin >> root;
+            std::cout << "Using '" << root << "' as the root";
+            for (ranthrough = 0; runthrough >= ranthrough; ranthrough++)
+            {
+                ed1 = "er", ed2 = "re", ed3 = "ir", ed4 = "uire", ed5 = "dire", ed6 = "fire", ed7 = "lire", ed8 = "crire", ed9 = "aindre", ed10 = "eindre", ed11 = "oindre", ed12 = "ttre", ed13 = "prendre", ed14 = "aître";
 
+                if (hasEnding(root, ed4) == true) // urie endings
+                {
+                    word_type = 4;
+                }
+                else if (hasEnding(root, ed5) == true) // dire endings
+                {
+                    word_type = 5;
+                }
+                else if (hasEnding(root, ed6) == true) // fire endings
+                {
+                    word_type = 6;
+                }
+                else if (hasEnding(root, ed7) == true) // lire endings
+                {
+                    word_type = 7;
+                }
+                else if (hasEnding(root, ed8) == true) // crire endings
+                {
+                    word_type = 8;
+                }
+                else if (hasEnding(root, ed9) == true)
+                { // aindre endings
+                    word_type = 9;
+                }
+                else if (hasEnding(root, ed10) == true)
+                { // eindre endings
+                    word_type = 10;
+                }
+                else if (hasEnding(root, ed11) == true)
+                { // oindre endings
+                    word_type = 11;
+                }
+                else if (hasEnding(root, ed12) == true)
+                { // oindre endings
+                    word_type = 12;
+                }
+                else if (hasEnding(root, ed13) == true)
+                { // prendre endings
+                    word_type = 13;
+                }
+                else if (hasEnding(root, ed14) == true)
+                { // aître endings
+                    word_type = 14;
+                }
+                else if (hasEnding(root, ed1) == true)
+                { // er endings
+                    word_type = 1;
+                }
+                else if (hasEnding(root, ed2) == true)
+                { // re endings
+                    word_type = 2;
+                }
+                else if (hasEnding(root, ed3) == true)
+                { // ir endings
+                    word_type = 3;
+                }
+                else
+                {
+                    std::cout << "That root is shit, but fine...\n";
+                }
+                root.pop_back();
+                root.pop_back();
+                // ending wanted
+                std::cout << "Are you talking in 1st, 2nd or 3rd person?\n"
+                          << "Use 1/2/3 for your answer.\n";
+                std::cin >> personal;
+                std::cout << "Are you talking about multiple people?\n"
+                          << "Use 1 for one person; 2 for multiple people.\n";
+                std::cin >> number;
+                if (level != 1)
+                {
+                    std::cout << "Is this Past Tense (1); Present Tense (2); or Future Tense (3)?\n";
+                    std::cin >> tense;
+                }
+
+                // appends desired ending onto root
+                if (tense == 1)
+                {
+                    std::cout << "ive not coded past tense lol"; // TO DO --------------------------------------------------
+                }
+                if (tense == 2)
+                {
+                    if (personal == 1)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("e");
+                                break;
+                            case 2:
+                                root.append("ons"); // need g support
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("s");
+                                break;
+                            case 2:
+                                root.append("ons");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 3)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("is");
+                                break;
+                            case 2:
+                                root.append("issons");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                    else if (personal == 2)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("es");
+                                break;
+                            case 2:
+                                root.append("ez");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("s");
+                                break;
+                            case 2:
+                                root.append("ez");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 3)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("is");
+                                break;
+                            case 2:
+                                root.append("isez");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                    else if (personal == 3)
+                    {
+                        if (word_type == 1)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("e");
+                                break;
+                            case 2:
+                                root.append("ent");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        if (word_type == 2)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("");
+                                break;
+                            case 2:
+                                root.append("ent");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                        else if (word_type == 3)
+                        {
+                            switch (number)
+                            {
+                            case 1:
+                                root.append("it");
+                                break;
+                            case 2:
+                                root.append("issent");
+                                break;
+                            default:
+                                std::cout << "you good bro?\n";
+                            }
+                        }
+                    }
+                }
+                if (tense == 3)
+                {
+                    std::cout << "ive not coded future tense lol";
+                }
+                std::cout << "The correct conjugation is:\n"; // TO DO --------------------------------------------------
+                          << root << "\n";
+                std::cout << "\n";
+            }
         }
     }
 }
 // diffrent areas to paste on ending
 
+// universal ending detector
+bool hasEnding(std::string const &fullString, std::string const &ending)
+{
+    if (fullString.length() >= ending.length())
+    {
+        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+    }
+    else
+    {
+        return false;
+    }
+}
+
+// spanish fixers
 void irregularity_fixer()
 {
     if (root == "ten")
@@ -1549,14 +1801,128 @@ void irregular_number()
         }
     }
 }
-bool hasEnding(std::string const &fullString, std::string const &ending)
+// french fixers
+void common_french_irregularity_fixer()
 {
-    if (fullString.length() >= ending.length())
+    if (root == "di")
     {
-        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+        root = "dites";
+        irregular = true;
     }
-    else
+    else if (root == "redi")
     {
-        return false;
+        root == "redites";
+        irregular = true;
+    }
+    if (root == "romp" || root == "corromp" || root == "interromp" && word_type == 2 && personal == 3)
+    {
+        root.append("t");
+        irregular = true;
+    }
+    if (word_type == 4 || word_type == 5 || word_type == 6 || word_type == 7)
+    {
+        if (number == 2)
+        {
+            root.append("s");
+        }
+        else if (personal == 3 && number != 2)
+        {
+            root.append("t");
+            irregular = true;
+        }
+    }
+    if (word_type == 8)
+    {
+
+        if (number == 2)
+        {
+            root.append("v");
+        }
+        else if (personal == 3 && number != 2)
+        {
+            root.append("t");
+            irregular = true;
+        }
+    }
+    if (word_type == 9 || word_type == 10 || word_type == 11)
+    {
+        root.pop_back();
+        if (number == 2)
+        {
+            root.pop_back();   // removes n
+            root.append("gn"); // adds the g and replaces n
+        }
+        else if (personal == 3 && number != 2)
+        {
+            root.append("t");
+            irregular = true;
+        }
+    }
+    if (word_type == 12)
+    {
+        if (number == 1)
+        {
+            root.pop_back();
+        }
+    }
+    if (word_type == 13)
+    {
+        if (number == 2)
+        {
+            root.pop_back();
+            if (personal == 3)
+            {
+                irregular = true;
+                root.append("prennent");
+            }
+        }
+    }
+    if (word_type == 14)
+    {
+        root.pop_back();
+        root.pop_back();
+        root.append("i");
+        if (personal == 1)
+        {
+            switch (number)
+            {
+            case 1:
+                root.append("s");
+                break;
+            case 2:
+                root.append("ssons");
+                break;
+            default:
+                std::cout << "you good bro?\n";
+            }
+        }
+        else if (personal == 2)
+        {
+            switch (number)
+            {
+            case 1:
+                root.append("s");
+                break;
+            case 2:
+                root.append("ssez");
+                break;
+            default:
+                std::cout << "you good bro?\n";
+            }
+        }
+        else if (personal == 3)
+        {
+            switch (number)
+            {
+            case 1:
+                root.append("^t");
+                break;
+            case 2:
+                root.append("ssent");
+                break;
+            default:
+                std::cout << "you good bro?\n";
+            }
+        }
     }
 }
