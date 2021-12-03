@@ -1,4 +1,5 @@
-# c--and-c--
-Testing area for my cpp code
-literally my first time using this
-idk what any of this is
+# The conjugator i spent too much time on
+
+A spanish congjugator that should work until like spanish 2
+Also has numbers
+is this good enough?
