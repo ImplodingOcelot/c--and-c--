@@ -8,16 +8,24 @@ void eng_numb_form();
 void eng_word_form();
 void eng_irregular_numb_fixer();
 
+// yeet the feetus
+void sp_numb_form();
+
 // declare
 int number_form, inserted10, insetred1, og_lang, has1eng, has10eng, has10eng2, has1eng2, numb_empty;
 std::string output10, output1, eng_in1, eng_in10, eng_out10, eng_out1, eng_out12, eng_out_102, irregular_output;
 bool irregular_numb;
 
+// spanish declare
+int sp_inserted_10, sp_inserted_1;
+std::string sp_out_10, sp_out_1;
+bool sp_irregular, sp_has_10, sp_has_1;
+
 void numbers()
 {
     std::cout << "Would you like to translate from english (1) or from spanish (2)?\n";
     std::cin >> og_lang;
-    std::cout << "You have selected numbers, now do you want to translate from numeric form (1) or word form (2)?\n";
+    std::cout << "Now do you want to translate from numeric form (1) or word form (2)?\n";
     std::cin >> number_form;
     if (og_lang == 1)
     {
@@ -26,17 +34,14 @@ void numbers()
 
             std::cout << "What would you like? (0 if you dont want a tens)?\n";
             std::cin >> inserted10;
-            std::cout << "Now the ones place?";
+            std::cout << "Now the ones place?\n";
             std::cin >> insetred1;
             eng_numb_form();
-            if(irregular_numb == true)  {
+            if (irregular_numb == true)
+            {
                 eng_irregular_numb_fixer();
             }
             if (irregular_numb != true)
-            {
-                irregular_numb = false;
-            }
-            if (irregular_numb == false)
             {
                 if (has10eng == 1 && has1eng == 1) // like 93
                 {
@@ -62,7 +67,7 @@ void numbers()
         }
         else if (number_form == 2) // numbers like ninety three
         {
-            std::cout << "What word goes in the tens place?\n";
+            std::cout << "What word goes in the tens place? (exeption ex:for thirteen use 'ten three')\n";
             std::cin >> eng_in10;
             std::cout << "What word goes in the ones place?\n";
             std::cin >> eng_in1;
@@ -88,7 +93,8 @@ void numbers()
                 }
                 else if (has10eng == false && has1eng2 == false)
                 { // only 0
-                    std::cout << "Your answer is... " << "cero";
+                    std::cout << "Your answer is... "
+                              << "cero";
                 }
             }
             else if (irregular_numb == true)
@@ -101,6 +107,30 @@ void numbers()
             std::cout << "Thats not valid, if this is an error please tell me. Restarting numbers...\n";
             number_form = numb_empty;
             numbers();
+        }
+    }
+    else if (og_lang == 2) // SPANISH -_-_-_-_-_-_-__--__-_-__--___--__--____----
+    {
+        if (number_form == 1)// NUMBER
+        {
+            std::cout << "What number would you like in the tens?\n";
+            std::cin >> sp_inserted_10;
+            std::cout << "And the ones?\n";
+            std::cin >> sp_inserted_1;
+            sp_numb_form();
+            if(sp_irregular != true)    {
+                if(sp_out_1 != "" && sp_out_10 != "")   {
+                std::cout << "Your number is: " << sp_out_10 << "y" << sp_out_1 << "\n";
+                }else if(sp_out_1 != "" && sp_out_10 != "") {
+                    std::cout << "Your number is: " << sp_out_10 << sp_out_1 << "\n";
+                }else {
+                    std::cout << "Your number is: cero";
+                }
+            }
+        }
+        else if (number_form == 2) // WORD
+        {
+            std::cout << "lol\n";
         }
     }
 }
@@ -310,8 +340,7 @@ void eng_word_form()
 }
 void eng_irregular_numb_fixer()
 {
-    // TENS
-
+        // TENS
     if (output10 == "diez" || eng_out_102 == "diez")
     {
         if (eng_out12 == "uno" || output1 == "uno")
@@ -392,5 +421,100 @@ void eng_irregular_numb_fixer()
         {
             irregular_output = "veintinueve";
         }
+        if(eng_out12 == "" || output1 == "")   {
+            irregular_numb = false;
+        }
+    }
+}
+// SP below
+
+void sp_numb_form() {
+
+    switch(sp_inserted_10)  {
+
+        case 1:
+        sp_out_10 = "diez";
+        sp_irregular = true;
+        break;
+        case 2:
+        sp_out_10 = "viente";
+        sp_irregular = true;
+        
+        break;
+        case 3:
+        sp_out_10 = "treinta";
+        
+        break;
+        case 4:
+        sp_out_10 = "cuarenta";
+        
+        break;
+        case 5:
+        sp_out_10 = "cincuenta";
+        
+        break;
+        case 6:
+        sp_out_10 = "sesenta";
+        
+        break;
+        case 7:
+        sp_out_10 = "setenta";
+        
+        break;
+        case 8:
+        sp_out_10 = "ochenta";
+        
+        break;
+        case 9:
+        sp_out_10 = "noventa";
+        
+        break;
+        default:
+        sp_out_1 = "";
+        break;
+
+    }
+    //unos
+    switch(sp_inserted_1)   {
+        case 1:
+        sp_out_1 = "uno";
+        
+        break;
+        case 2:
+        sp_out_1 = "dos";
+        
+        break;
+        case 3:
+        sp_out_1 = "tres";
+        
+        break;
+        case 4:
+        sp_out_1 = "cuatro";
+        
+        break;
+        case 5:
+        sp_out_1 = "cinco";
+        
+        break;
+        case 6:
+        sp_out_1 = "seis";
+        
+        break;
+        case 7:
+        sp_out_1 = "siete";
+        
+        break;
+        case 8:
+        sp_out_1 = "ocho";
+        
+        break;
+        case 9:
+        sp_out_1 = "nueve";
+        
+        break;
+        default:
+        sp_out_1 = "";
+        break;
+
     }
 }
