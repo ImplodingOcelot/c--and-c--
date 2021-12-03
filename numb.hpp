@@ -24,12 +24,14 @@ void numbers()
         if (number_form == 1) // numbers like 93
         {
 
-            std::cout << "What would you like to be in the tens place (if you want none then just put (0))?\n";
+            std::cout << "What would you like? (0 if you dont want a tens)?\n";
             std::cin >> inserted10;
-            std::cout << "What would you like in the ones place?\n";
+            std::cout << "Now the ones place?";
             std::cin >> insetred1;
             eng_numb_form();
-            eng_irregular_numb_fixer();
+            if(irregular_numb == true)  {
+                eng_irregular_numb_fixer();
+            }
             if (irregular_numb != true)
             {
                 irregular_numb = false;
@@ -74,24 +76,24 @@ void numbers()
             {
                 if (has10eng2 == true && has1eng2 == true)
                 { // like 93
-                    std::cout << eng_out10 << eng_out1 << "\n";
+                    std::cout << "Your answer is... " << eng_out10 << eng_out1 << "\n";
                 }
                 else if (has10eng2 == false && has1eng2 == true)
                 { // like 3
-                    std::cout << eng_out1 << "\n";
+                    std::cout << "Your answer is... " << eng_out1 << "\n";
                 }
                 else if (has10eng == true && has1eng2 == false)
                 { // like 90
-                    std::cout << eng_out10 << "\n";
+                    std::cout << "Your answer is... " << eng_out10 << "\n";
                 }
                 else if (has10eng == false && has1eng2 == false)
                 { // only 0
-                    std::cout << "cero";
+                    std::cout << "Your answer is... " << "cero";
                 }
             }
             else if (irregular_numb == true)
             {
-                std::cout << irregular_output << "\n";
+                std::cout << "Your answer is... " << irregular_output << "\n";
             }
         }
         else
@@ -105,7 +107,6 @@ void numbers()
 
 void eng_numb_form()
 {
-
     // checking 10s place
     switch (inserted10)
     {
@@ -309,44 +310,43 @@ void eng_word_form()
 }
 void eng_irregular_numb_fixer()
 {
-
     // TENS
 
-    if (eng_out10 == "diez")
+    if (output10 == "diez" || eng_out_102 == "diez")
     {
-        if (eng_out1 == "uno")
+        if (eng_out12 == "uno" || output1 == "uno")
         {
             irregular_output = "once";
         }
-        else if (eng_out1 == "dos")
+        else if (eng_out12 == "dos" || output1 == "dos")
         {
             irregular_output = "doce";
         }
-        else if (eng_out1 == "tres")
+        else if (eng_out12 == "tres" || output1 == "tres")
         {
             irregular_output = "trece";
         }
-        else if (eng_out1 == "cuatro")
+        else if (eng_out12 == "cuatro" || output1 == "cuatro")
         {
             irregular_output = "cuatorce";
         }
-        else if (eng_out1 == "cinco")
+        else if (eng_out12 == "cinco" || output1 == "cinco")
         {
-            irregular_output = "cuince";
+            irregular_output = "quince";
         }
-        else if (eng_out1 == "seis")
+        else if (eng_out12 == "seis" || output1 == "seis")
         {
             irregular_output = "dieciséis";
         }
-        else if (eng_out1 == "siete")
+        else if (eng_out12 == "siete" || output1 == "siete")
         {
             irregular_output = "diecisiete";
         }
-        else if (eng_out1 == "ocho")
+        else if (eng_out12 == "ocho" || output1 == "ocho")
         {
             irregular_output = "dieciocho";
         }
-        else if (eng_out1 == "nueve")
+        else if (eng_out12 == "nueve" || output1 == "nueve")
         {
             irregular_output = "diecinueve";
         }
@@ -354,41 +354,41 @@ void eng_irregular_numb_fixer()
 
     // TWENTYS
 
-    if (eng_out10 == "viente")
+    if (output10 == "viente" || eng_out_102 == "viente")
     {
-        if (eng_out1 == "uno")
+        if (eng_out12 == "uno" || output1 == "uno")
         {
             irregular_output == "veintiuno";
         }
-        else if (eng_out1 == "dos")
+        else if (eng_out12 == "dos" || output1 == "dos")
         {
             irregular_output == "veintidos";
         }
-        else if (eng_out1 == "tres")
+        else if (eng_out12 == "tres" || output1 == "tres")
         {
             irregular_output = "veintitres";
         }
-        else if (eng_out1 == "cuatro")
+        else if (eng_out12 == "cuatro" || output1 == "cuatro")
         {
             irregular_output = "veinticuatro";
         }
-        else if (eng_out1 == "cinco")
+        else if (eng_out12 == "cinco" || output1 == "cinco")
         {
             irregular_output = "veinticinco";
         }
-        else if (eng_out1 == "seis")
+        else if (eng_out12 == "seis" || output1 == "seis")
         {
             irregular_output = "veintiséis";
         }
-        else if (eng_out1 == "siete")
+        else if (eng_out12 == "siete" || output1 == "siete")
         {
             irregular_output = "veintisiete";
         }
-        else if (eng_out1 == "ocho")
+        else if (eng_out12 == "ocho" || output1 == "ocho")
         {
             irregular_output = "veintiocho";
         }
-        else if (eng_out1 == "nueve")
+        else if (eng_out12 == "nueve" || output1 == "nueve")
         {
             irregular_output = "veintinueve";
         }
