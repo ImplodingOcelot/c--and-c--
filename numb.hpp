@@ -15,6 +15,7 @@ void eng_irregular_numb_fixer();
 // spanish voids
 void sp_numb_form();
 void sp_irregular_numb_fixer();
+void sp_word_form();
 
 // reset declare
 int numb_empty;
@@ -28,13 +29,13 @@ bool irregular_numb;
 
 // spn >> eng declare
 int sp_inserted_10, sp_inserted_1;
-std::string sp_out_10, sp_out_1, sp_irregular_out;
+std::string sp_out_10, sp_out_1, sp_irregular_out, sp_in_1, sp_in_10;
 bool sp_irregular, sp_has_10, sp_has_1;
 
 void numbers()
 {
     reset_numbs();
-    std::cout << "Would you like to translate from english (1) or from spanish (2)?\n";
+    std::cout << "Would you like to translate from eng > spn (1) or from spn > eng (2)?\n";
     std::cin >> og_lang;
     std::cout << "Now do you want to translate from numeric form (1) or word form (2)?\n";
     std::cin >> number_form;
@@ -132,26 +133,48 @@ void numbers()
             {
                 if (sp_out_1 != "" || sp_out_10 != "")
                 {
-                    std::cout << "Your output is: " << sp_out_10 << sp_out_1 << "\n";
+                    std::cout << "Your output is: " << sp_out_10 << " " << sp_out_1 << "\n";
                 }
                 else
                 {
                     std::cout << "Your output is: zero";
                 }
             }
-            else if(sp_irregular == true)   {
+            else if (sp_irregular == true)
+            {
                 sp_irregular_numb_fixer();
                 std::cout << "Your output is: " << sp_irregular_out << "\n";
             }
         }
         else if (number_form == 2) // WORD
         {
-            std::cout << "lol\n";
+            std::cout << "What would you like in your tens? (for 21 do viente uno, not vientiuno)\n";
+            std::cin >> sp_in_10;
+            std::cout << "And the ones?\n";
+            std::cin >> sp_in_1;
+            sp_word_form();
+            if (sp_irregular != true)
+            {
+                if (sp_out_1 != "" || sp_out_10 != "")
+                {
+                    std::cout << "Your output is: " << sp_out_10 << " " << sp_out_1 << "\n";
+                }
+                else
+                {
+                    std::cout << "Your output is: zero";
+                }
+            }
+            else if (sp_irregular == true)
+            {
+                sp_irregular_numb_fixer();
+                std::cout << "Your output is: " << sp_irregular_out << "\n";
+            }
         }
     }
 }
 
-void reset_numbs()  {
+void reset_numbs()
+{
     number_form = numb_empty;
     inserted10 = numb_empty;
     insetred1 = numb_empty;
@@ -177,6 +200,8 @@ void reset_numbs()  {
     sp_out_10 = string_empty;
     sp_out_1 = string_empty;
     sp_irregular_out = string_empty;
+    sp_in_1 = string_empty;
+    sp_in_10 = string_empty;
     //
     sp_irregular = bool_empty;
     sp_has_10 = bool_empty;
@@ -594,5 +619,83 @@ void sp_irregular_numb_fixer()
                 sp_irregular_out = "nineteen";
             }
         }
+    }
+}
+void sp_word_form()
+{
+    if (sp_in_10 == "diez")
+    {
+        sp_out_10 = "ten";
+        sp_irregular = true;
+    }
+    else if (sp_in_10 == "viente")
+    {
+        sp_out_10 = "twenty";
+    }
+    else if (sp_in_10 == "treinta")
+    {
+        sp_out_10 = "thirty";
+    }
+    else if (sp_in_10 == "cuarenta")
+    {
+        sp_out_10 = "fourty";
+    }
+    else if (sp_in_10 == "cincuenta")
+    {
+        sp_out_10 = "fifty";
+    }
+    else if (sp_in_10 == "sesenta")
+    {
+        sp_out_10 = "sixty";
+    }
+    else if (sp_in_10 == "setenta")
+    {
+        sp_out_10 = "seventy";
+    }
+    else if (sp_in_10 == "ochenta")
+    {
+        sp_out_10 = "eighty";
+    }
+    else if (sp_in_10 == "noventa")
+    {
+        sp_out_10 = "ninety";
+    }
+
+    if (sp_in_1 == "uno")
+    {
+        sp_out_1 = "one";
+        sp_irregular = true;
+    }
+    else if (sp_in_1 == "dos")
+    {
+        sp_out_1 = "two";
+    }
+    else if (sp_in_1 == "tres")
+    {
+        sp_out_1 = "three";
+    }
+    else if (sp_in_1 == "cuatro")
+    {
+        sp_out_1 = "four";
+    }
+    else if (sp_in_1 == "cinco")
+    {
+        sp_out_1 = "five";
+    }
+    else if (sp_in_1 == "seis")
+    {
+        sp_out_1 = "six";
+    }
+    else if (sp_in_1 == "siete")
+    {
+        sp_out_1 = "seven";
+    }
+    else if (sp_in_1 == "ocho")
+    {
+        sp_out_1 = "eight";
+    }
+    else if (sp_in_1 == "nueve")
+    {
+        sp_out_1 = "nine";
     }
 }
