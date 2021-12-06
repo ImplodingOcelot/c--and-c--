@@ -3,31 +3,42 @@
 #include <string>
 // numbers
 
+// Universals for numbers
 void numbers();
+void reset_numbs();
+
+//  english voids
 void eng_numb_form();
 void eng_word_form();
 void eng_irregular_numb_fixer();
 
-// yeet the feetus
+// spanish voids
 void sp_numb_form();
+void sp_irregular_numb_fixer();
 
-// declare
-int number_form, inserted10, insetred1, og_lang, has1eng, has10eng, has10eng2, has1eng2, numb_empty;
+// reset declare
+int numb_empty;
+std::string string_empty;
+bool bool_empty;
+
+// eng >> spn declare
+int number_form, inserted10, insetred1, og_lang, has1eng, has10eng, has10eng2, has1eng2;
 std::string output10, output1, eng_in1, eng_in10, eng_out10, eng_out1, eng_out12, eng_out_102, irregular_output;
 bool irregular_numb;
 
-// spanish declare
+// spn >> eng declare
 int sp_inserted_10, sp_inserted_1;
-std::string sp_out_10, sp_out_1;
+std::string sp_out_10, sp_out_1, sp_irregular_out;
 bool sp_irregular, sp_has_10, sp_has_1;
 
 void numbers()
 {
+    reset_numbs();
     std::cout << "Would you like to translate from english (1) or from spanish (2)?\n";
     std::cin >> og_lang;
     std::cout << "Now do you want to translate from numeric form (1) or word form (2)?\n";
     std::cin >> number_form;
-    if (og_lang == 1)
+    if (og_lang == 1) // ENG >> SPN
     {
         if (number_form == 1) // numbers like 93
         {
@@ -105,27 +116,32 @@ void numbers()
         else
         {
             std::cout << "Thats not valid, if this is an error please tell me. Restarting numbers...\n";
-            number_form = numb_empty;
             numbers();
         }
     }
-    else if (og_lang == 2) // SPANISH -_-_-_-_-_-_-__--__-_-__--___--__--____----
+    else if (og_lang == 2) // SPN >> ENG
     {
-        if (number_form == 1)// NUMBER
+        if (number_form == 1) // NUMBER
         {
             std::cout << "What number would you like in the tens?\n";
             std::cin >> sp_inserted_10;
             std::cout << "And the ones?\n";
             std::cin >> sp_inserted_1;
             sp_numb_form();
-            if(sp_irregular != true)    {
-                if(sp_out_1 != "" && sp_out_10 != "")   {
-                std::cout << "Your number is: " << sp_out_10 << "y" << sp_out_1 << "\n";
-                }else if(sp_out_1 != "" && sp_out_10 != "") {
-                    std::cout << "Your number is: " << sp_out_10 << sp_out_1 << "\n";
-                }else {
-                    std::cout << "Your number is: cero";
+            if (sp_irregular != true)
+            {
+                if (sp_out_1 != "" || sp_out_10 != "")
+                {
+                    std::cout << "Your output is: " << sp_out_10 << sp_out_1 << "\n";
                 }
+                else
+                {
+                    std::cout << "Your output is: zero";
+                }
+            }
+            else if(sp_irregular == true)   {
+                sp_irregular_numb_fixer();
+                std::cout << "Your output is: " << sp_irregular_out << "\n";
             }
         }
         else if (number_form == 2) // WORD
@@ -133,6 +149,38 @@ void numbers()
             std::cout << "lol\n";
         }
     }
+}
+
+void reset_numbs()  {
+    number_form = numb_empty;
+    inserted10 = numb_empty;
+    insetred1 = numb_empty;
+    og_lang = numb_empty;
+    has1eng = numb_empty;
+    has10eng = numb_empty;
+    has10eng2 = numb_empty;
+    has1eng2 = numb_empty;
+    //
+    output10 = string_empty;
+    output1 = string_empty;
+    eng_in1 = string_empty;
+    eng_in10 = string_empty;
+    eng_out1 = string_empty;
+    eng_out12 = string_empty;
+    eng_out_102 = string_empty;
+    //
+    irregular_output = bool_empty;
+    // sp
+    sp_inserted_10 = numb_empty;
+    sp_inserted_1 = numb_empty;
+    //
+    sp_out_10 = string_empty;
+    sp_out_1 = string_empty;
+    sp_irregular_out = string_empty;
+    //
+    sp_irregular = bool_empty;
+    sp_has_10 = bool_empty;
+    sp_has_1 = bool_empty;
 }
 
 void eng_numb_form()
@@ -340,7 +388,7 @@ void eng_word_form()
 }
 void eng_irregular_numb_fixer()
 {
-        // TENS
+    // TENS
     if (output10 == "diez" || eng_out_102 == "diez")
     {
         if (eng_out12 == "uno" || output1 == "uno")
@@ -421,100 +469,130 @@ void eng_irregular_numb_fixer()
         {
             irregular_output = "veintinueve";
         }
-        if(eng_out12 == "" || output1 == "")   {
+        if (eng_out12 == "" || output1 == "")
+        {
             irregular_numb = false;
         }
     }
 }
 // SP below
 
-void sp_numb_form() {
+void sp_numb_form()
+{
 
-    switch(sp_inserted_10)  {
-
-        case 1:
-        sp_out_10 = "diez";
+    switch (sp_inserted_10)
+    {
+        // diezes
+    case 1:
+        sp_out_10 = "ten";
         sp_irregular = true;
         break;
-        case 2:
-        sp_out_10 = "viente";
-        sp_irregular = true;
-        
+    case 2:
+        sp_out_10 = "twenty";
         break;
-        case 3:
-        sp_out_10 = "treinta";
-        
+    case 3:
+        sp_out_10 = "thirty";
         break;
-        case 4:
-        sp_out_10 = "cuarenta";
-        
+    case 4:
+        sp_out_10 = "fourty";
         break;
-        case 5:
-        sp_out_10 = "cincuenta";
-        
+    case 5:
+        sp_out_10 = "fifty";
         break;
-        case 6:
-        sp_out_10 = "sesenta";
-        
+    case 6:
+        sp_out_10 = "sixty";
         break;
-        case 7:
-        sp_out_10 = "setenta";
-        
+    case 7:
+        sp_out_10 = "seventy";
         break;
-        case 8:
-        sp_out_10 = "ochenta";
-        
+    case 8:
+        sp_out_10 = "eighty";
         break;
-        case 9:
-        sp_out_10 = "noventa";
-        
+    case 9:
+        sp_out_10 = "ninety";
         break;
-        default:
+    default:
         sp_out_1 = "";
         break;
-
     }
-    //unos
-    switch(sp_inserted_1)   {
-        case 1:
-        sp_out_1 = "uno";
-        
+    // unos
+    switch (sp_inserted_1)
+    {
+    case 1:
+        sp_out_1 = "one";
         break;
-        case 2:
-        sp_out_1 = "dos";
-        
+    case 2:
+        sp_out_1 = "two";
         break;
-        case 3:
-        sp_out_1 = "tres";
-        
+    case 3:
+        sp_out_1 = "three";
         break;
-        case 4:
-        sp_out_1 = "cuatro";
-        
+    case 4:
+        sp_out_1 = "four";
         break;
-        case 5:
-        sp_out_1 = "cinco";
-        
+    case 5:
+        sp_out_1 = "five";
         break;
-        case 6:
-        sp_out_1 = "seis";
-        
+    case 6:
+        sp_out_1 = "six";
         break;
-        case 7:
-        sp_out_1 = "siete";
-        
+    case 7:
+        sp_out_1 = "seven";
         break;
-        case 8:
-        sp_out_1 = "ocho";
-        
+    case 8:
+        sp_out_1 = "eight";
         break;
-        case 9:
-        sp_out_1 = "nueve";
-        
+    case 9:
+        sp_out_1 = "nine";
         break;
-        default:
+    default:
         sp_out_1 = "";
         break;
-
+    }
+}
+void sp_irregular_numb_fixer()
+{
+    if (sp_irregular == true)
+    {
+        // TENS
+        if (sp_out_10 == "ten")
+        {
+            if (sp_out_1 == "one")
+            {
+                sp_irregular_out = "eleven";
+            }
+            else if (sp_out_1 == "two")
+            {
+                sp_irregular_out = "twelve";
+            }
+            else if (sp_out_1 == "three")
+            {
+                sp_irregular_out = "thirteen";
+            }
+            else if (sp_out_1 == "four")
+            {
+                sp_irregular_out = "fourteen";
+            }
+            else if (sp_out_1 == "five")
+            {
+                sp_irregular_out = "fifteen";
+            }
+            else if (sp_out_1 == "six")
+            {
+                sp_irregular_out = "sixteen";
+            }
+            else if (sp_out_1 == "seven")
+            {
+                sp_irregular_out = "seventeen";
+            }
+            else if (sp_out_1 == "eight")
+            {
+                sp_irregular_out = "eighteen";
+            }
+            else if (sp_out_1 == "nine")
+            {
+                sp_irregular_out = "nineteen";
+            }
+        }
     }
 }

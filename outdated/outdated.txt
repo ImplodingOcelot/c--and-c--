@@ -1,0 +1,3 @@
+This is the outdated folder
+It houses code that I no longer use, but I still keep in order to refrence them
+Ignore anything in here :)
