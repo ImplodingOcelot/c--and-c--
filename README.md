@@ -1,5 +1,8 @@
-# The conjugator i spent too much time on
+# Conjugator/Numbers
 
-A spanish congjugator that should work until like spanish 2.
-Also has numbers.
-is this good enoughso that github wont send an assasin after me?
+By Imploding_Ocelot
+
+A basic conjugator & numbers for spanish
+
+The conjugator includes -ar, -er, -ir verbs and most irregular verbs to my knowledge
+The numbers include any number (0-99) word or numerical form
