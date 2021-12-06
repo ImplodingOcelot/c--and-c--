@@ -1,6 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <string>
 // numbers
 
 // Universals for numbers

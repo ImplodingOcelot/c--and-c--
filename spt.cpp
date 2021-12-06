@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <unistd.h>
 #include "cong.hpp"
 #include "numb.hpp"
 
@@ -9,62 +10,61 @@ std::string gui_using_choice, gui_exit;
 
 int main()
 {
-    if (gui_exit != "exit" || gui_exit != "e" || gui_exit != "EXIT")
+    std::cout << "Opening Spanish Translator\n";
+    std::cout << "This program is created by ImplodingOcelot <zott211@gmail.com>\n";
+    sleep(2);
+    std::cout << "Loading Sucess!\n";
+    std::cout << "If you want to exit- type in anything not secified as a choice.\n";
+    sleep(1);
+    std::cout << "What feature would you like to use?\n";
+    sleep(1);
+    std::cout << "c for conjugator or n for numeric.\n";
+    std::cin >> gui_using_choice;
+    if (gui_using_choice == "c" || gui_using_choice == "C")
     {
-        std::cout << "Opening Spanish Translator\n";
-        std::cout << "This program is created by ImplodingOcelot <zott211@gmail.com>\n";
-        std::cout << "Loading Sucess!\n";
-        std::cout << "If you want to quit, type 'exit' or 'e'- If you want anything else type any other WORD.\n";
-        std::cin >> gui_exit;
-        std::cout << "What feature would you like to use?\n";
-        std::cout << "c for conjugator or n for numeric.\n";
-        std::cin >> gui_using_choice;
-        if (gui_using_choice == "c" || gui_using_choice == "C")
-        {
-            conjugator();
-        }
-        else if (gui_using_choice == "n" || gui_using_choice == "N")
-        {
-            numbers();
-        }
-        else if (gui_using_choice == "MorayEel")
-        {
-            std::cout
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmddhhhdmNMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmdys+::::::--://+hMNMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMhshmMMMMMMMMMMMMMMMMMMMNdys+:----:/++//ys::+o++sNMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmho.`.-:+shdmmdhysooo++/////+ys/::/+ossso+hd+:oyyoMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMm+-``````````.--..``....-/+sy+/ddysossydhss++++osoo+NMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMmo-``````````.........---:/osmmmhdyyyyhdhyoooosohmhsshMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMy-.`````..`.........----.--:/ymhdyoymmmmmhyssshhddmyymMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMy..`..`.-...-::-----:----::::/+ssoo++hNNmdhyhhyhddhydMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMy...-...-:---/++////+oo+/:://osyhyssssoydhhmNmhdohshNMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMNo...-:-.:/:::/oo+o+osyyo+/+osyyhdhhhdhyshmNNNmNNmyhNMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMN/....---://:/+oo++++oyysssyysyyhhhhmmhhdmMNNmNNmdhNMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMM+...-:-.-::::/ooo+++osyysooooyhhdmmmddmNMNmmNNNmhmMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMd----:-..::::/+os++oossyso+osyydmmmmdNMMMNmmdNNhmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMs//.---::::+//+so++++osssoooshdmNNNNMMMMMNdyhmhmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMyo----::+////+oo+++/+oososydmNNNNMMMMMMMMmdyddMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMN+:::::/::::/+os+//++ososhmNMMMMMMMMMMMMMNNmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMM+++:::/---:/+++/+++osyydMMMMMMMMMMMMMMMMMMNMMMMMMMMMMMMMMMMMNmmhdNNMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMM+o+////::::/+/--:+oyhdyss+/oyhmNMMMMMMMMMMMMMMMMMMMMmmmdyso++/++++yMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMoso++o+///+++/:::/osoooss+//+////+oyyhhhhhhhhhhhhhhysssssssssssyss/dMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMhooossoo+ooso+///++++///++osss+///+ossso++++ossyyhhhhhhhhhhhhhhhhy+mMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMNsossoooossssoooosssso++ooyhhhyyssyyyyyyyyyhhhdddmmdddddddddhhdysydMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMmoo+++++oosssssyyyhhhyyyyhhhhdmdddddddddddddddmmmmddhhyysssooshmMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMms+++++++++++oooosssssssyyysyhhdhhhhhhyyyyyyysso++oosyhddmNMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMNho+++++++++++++++oooooooooooooooooooooooooooooydNMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMNds++/+++++++++++++++//////oyyyyyhhdddddhdmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMNdyso+++///+/++++osyhdNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNNmmdddddmNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
-                << "MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MO\n";
-        }
+        conjugator();
+    }
+    else if (gui_using_choice == "n" || gui_using_choice == "N")
+    {
+        numbers();
+    }
+    else if (gui_using_choice == "MorayEel")
+    {
+        std::cout
+            << "....................................................................................................\n"
+            << "....................................................................................................\n"
+            << "....................................................................................................\n"
+            << "....................................................................................................\n"
+            << "....................................................................N.ddhhhd.N......................\n"
+            << ".............................................................N.dys+::::::--://+h.N..................\n"
+            << "..................................hsh....................Ndys+:----:/++//ys::+o++sN.................\n"
+            << "................................ho.`.-:+shd..dhysooo++/////+ys/::/+ossso+hd+:oyyo...................\n"
+            << "..............................+-``````````.--..``....-/+sy+/ddysossydhss++++osoo+N..................\n"
+            << "............................o-``````````.........---:/os...hdyyyyhdhyoooosoh.hssh...................\n"
+            << "..........................y-.`````..`.........----.--:/y.hdyoy.....hyssshhdd.yy.....................\n"
+            << ".........................y..`..`.-...-::-----:----::::/+ssoo++hNN.dhyhhyhddhyd......................\n"
+            << "........................y...-...-:---/++////+oo+/:://osyhyssssoydhh.N.hdohshN.......................\n"
+            << "......................No...-:-.:/:::/oo+o+osyyo+/+osyyhdhhhdhysh.NNN.NN.yhN.........................\n"
+            << ".....................N/....---://:/+oo++++oyysssyysyyhhhh..hhd..NN.NN.dhN...........................\n"
+            << ".....................+...-:-.-::::/ooo+++osyysooooyhhd...dd.N.N..NNN.h..............................\n"
+            << "....................d----:-..::::/+os++oossyso+osyyd....dN...N..dNNh................................\n"
+            << "....................s//.---::::+//+so++++osssoooshd.NNNN.....Ndyh.h.................................\n"
+            << "....................yo----::+////+oo+++/+oososyd.NNNN.........dydd..................................\n"
+            << "....................N+:::::/::::/+os+//++ososh.N.............NN.....................................\n"
+            << ".....................+++:::/---:/+++/+++osyyd..................N.................N..hdNN............\n"
+            << ".....................+o+////::::/+/--:+oyhdyss+/oyh.N.......................dyso++/++++y............\n"
+            << ".....................oso++o+///+++/:::/osoooss+//+////+oyyhhhhhhhhhhhhhhysssssssssssyss/d...........\n"
+            << ".....................hooossoo+ooso+///++++///++osss+///+ossso++++ossyyhhhhhhhhhhhhhhhhy+............\n"
+            << ".....................Nsossoooossssoooosssso++ooyhhhyyssyyyyyyyyyhhhddd..dddddddddhhdysyd............\n"
+            << ".......................oo+++++oosssssyyyhhhyyyyhhhhd.ddddddddddddddd....ddhhyysssoosh...............\n"
+            << "........................s+++++++++++oooosssssssyyysyhhdhhhhhhyyyyyyysso++oosyhdd.N..................\n"
+            << "........................Nho+++++++++++++++oooooooooooooooooooooooooooooydN..........................\n"
+            << "..........................Nds++/+++++++++++++++//////oyyyyyhhdddddhd.N..............................\n"
+            << ".............................Ndyso+++///+/++++osyhdN................................................\n"
+            << "..................................NN..ddddd.N.......................................................\n"
+            << "....................................................................................................\n"
+            << "....................................................................................................\n"
+            << "....................................................................................................\n"
+            << "MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MORAY EEL --- MO\n";
     }
 }
