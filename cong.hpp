@@ -20,6 +20,8 @@ void conjugator()
     // eliminates non-grade level stuff
     std::cout << "What spanish level are you in (ex. '1' for spanish 1): ";
     std::cin >> cong_level;
+    std::cout << "How many times would you like to runthrough 'conjugator'?\n";
+    std::cin >> cong_ranthrough;
     std::cout << "For refrence: type 'e' to exit.\n";
     // runsthrough amount of times entered
     for (cong_ranthrough = 0; cong_runthrough >= cong_ranthrough; cong_ranthrough++)

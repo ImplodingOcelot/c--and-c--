@@ -17,6 +17,9 @@ void sp_numb_form();
 void sp_irregular_numb_fixer();
 void sp_word_form();
 
+// runthroughs
+int numb_runthrough, numb_ranthrough;
+
 // reset declare
 int numb_empty;
 std::string string_empty;
@@ -34,140 +37,145 @@ bool sp_irregular, sp_has_10, sp_has_1;
 
 void numbers()
 {
-    reset_numbs();
-    std::cout << "Would you like to translate from eng > spn (1) or from spn > eng (2)?\n";
-    std::cin >> og_lang;
-    std::cout << "Now do you want to translate from numeric form (1) or word form (2)?\n";
-    std::cin >> number_form;
-    if (og_lang == 1) // ENG >> SPN
+    std::cout << "How many times would you like to run through 'numbers'?)\n";
+    std::cin >> numb_runthrough;
+    for (int numb_ranthrough = 0; numb_runthrough >= numb_ranthrough; numb_ranthrough++)
     {
-        if (number_form == 1) // numbers like 93
+        reset_numbs();
+        std::cout << "Would you like to translate from eng > spn (1) or from spn > eng (2)?\n";
+        std::cin >> og_lang;
+        std::cout << "Now do you want to translate from numeric form (1) or word form (2)?\n";
+        std::cin >> number_form;
+        if (og_lang == 1) // ENG >> SPN
         {
+            if (number_form == 1) // numbers like 93
+            {
 
-            std::cout << "What would you like? (0 if you dont want a tens)?\n";
-            std::cin >> inserted10;
-            std::cout << "Now the ones place?\n";
-            std::cin >> insetred1;
-            eng_numb_form();
-            if (irregular_numb == true)
+                std::cout << "What would you like? (0 if you dont want a tens)?\n";
+                std::cin >> inserted10;
+                std::cout << "Now the ones place?\n";
+                std::cin >> insetred1;
+                eng_numb_form();
+                if (irregular_numb == true)
+                {
+                    eng_irregular_numb_fixer();
+                }
+                if (irregular_numb != true)
+                {
+                    if (has10eng == 1 && has1eng == 1) // like 93
+                    {
+                        std::cout << output10 << " y " << output1 << "\n";
+                    }
+                    else if (has10eng == 0 && has1eng == 1) // like 3
+                    {
+                        std::cout << output1 << "\n";
+                    }
+                    else if (has10eng == 1 && has1eng == 0) // like 90
+                    {
+                        std::cout << output10 << "\n";
+                    }
+                    else if (has10eng == 0 && has1eng == 0) // only 0
+                    {
+                        std::cout << "cero\n";
+                    }
+                }
+                else if (irregular_numb == true)
+                {
+                    std::cout << irregular_output << "\n";
+                }
+            }
+            else if (number_form == 2) // numbers like ninety three
             {
+                std::cout << "What word goes in the tens place? (exeption ex:for thirteen use 'ten three')\n";
+                std::cin >> eng_in10;
+                std::cout << "What word goes in the ones place?\n";
+                std::cin >> eng_in1;
+                eng_word_form();
                 eng_irregular_numb_fixer();
+                if (irregular_numb != true)
+                {
+                    irregular_numb = false;
+                }
+                if (irregular_numb == false)
+                {
+                    if (has10eng2 == true && has1eng2 == true)
+                    { // like 93
+                        std::cout << "Your answer is... " << eng_out10 << eng_out1 << "\n";
+                    }
+                    else if (has10eng2 == false && has1eng2 == true)
+                    { // like 3
+                        std::cout << "Your answer is... " << eng_out1 << "\n";
+                    }
+                    else if (has10eng == true && has1eng2 == false)
+                    { // like 90
+                        std::cout << "Your answer is... " << eng_out10 << "\n";
+                    }
+                    else if (has10eng == false && has1eng2 == false)
+                    { // only 0
+                        std::cout << "Your answer is... "
+                                  << "cero";
+                    }
+                }
+                else if (irregular_numb == true)
+                {
+                    std::cout << "Your answer is... " << irregular_output << "\n";
+                }
             }
-            if (irregular_numb != true)
+            else
             {
-                if (has10eng == 1 && has1eng == 1) // like 93
-                {
-                    std::cout << output10 << " y " << output1 << "\n";
-                }
-                else if (has10eng == 0 && has1eng == 1) // like 3
-                {
-                    std::cout << output1 << "\n";
-                }
-                else if (has10eng == 1 && has1eng == 0) // like 90
-                {
-                    std::cout << output10 << "\n";
-                }
-                else if (has10eng == 0 && has1eng == 0) // only 0
-                {
-                    std::cout << "cero\n";
-                }
-            }
-            else if (irregular_numb == true)
-            {
-                std::cout << irregular_output << "\n";
+                std::cout << "Thats not valid, if this is an error please tell me. Restarting numbers...\n";
+                numbers();
             }
         }
-        else if (number_form == 2) // numbers like ninety three
+        else if (og_lang == 2) // SPN >> ENG
         {
-            std::cout << "What word goes in the tens place? (exeption ex:for thirteen use 'ten three')\n";
-            std::cin >> eng_in10;
-            std::cout << "What word goes in the ones place?\n";
-            std::cin >> eng_in1;
-            eng_word_form();
-            eng_irregular_numb_fixer();
-            if (irregular_numb != true)
+            if (number_form == 1) // NUMBER
             {
-                irregular_numb = false;
-            }
-            if (irregular_numb == false)
-            {
-                if (has10eng2 == true && has1eng2 == true)
-                { // like 93
-                    std::cout << "Your answer is... " << eng_out10 << eng_out1 << "\n";
-                }
-                else if (has10eng2 == false && has1eng2 == true)
-                { // like 3
-                    std::cout << "Your answer is... " << eng_out1 << "\n";
-                }
-                else if (has10eng == true && has1eng2 == false)
-                { // like 90
-                    std::cout << "Your answer is... " << eng_out10 << "\n";
-                }
-                else if (has10eng == false && has1eng2 == false)
-                { // only 0
-                    std::cout << "Your answer is... "
-                              << "cero";
-                }
-            }
-            else if (irregular_numb == true)
-            {
-                std::cout << "Your answer is... " << irregular_output << "\n";
-            }
-        }
-        else
-        {
-            std::cout << "Thats not valid, if this is an error please tell me. Restarting numbers...\n";
-            numbers();
-        }
-    }
-    else if (og_lang == 2) // SPN >> ENG
-    {
-        if (number_form == 1) // NUMBER
-        {
-            std::cout << "What number would you like in the tens?\n";
-            std::cin >> sp_inserted_10;
-            std::cout << "And the ones?\n";
-            std::cin >> sp_inserted_1;
-            sp_numb_form();
-            if (sp_irregular != true)
-            {
-                if (sp_out_1 != "" || sp_out_10 != "")
+                std::cout << "What number would you like in the tens?\n";
+                std::cin >> sp_inserted_10;
+                std::cout << "And the ones?\n";
+                std::cin >> sp_inserted_1;
+                sp_numb_form();
+                if (sp_irregular != true)
                 {
-                    std::cout << "Your output is: " << sp_out_10 << " " << sp_out_1 << "\n";
+                    if (sp_out_1 != "" || sp_out_10 != "")
+                    {
+                        std::cout << "Your output is: " << sp_out_10 << " " << sp_out_1 << "\n";
+                    }
+                    else
+                    {
+                        std::cout << "Your output is: zero";
+                    }
                 }
-                else
+                else if (sp_irregular == true)
                 {
-                    std::cout << "Your output is: zero";
+                    sp_irregular_numb_fixer();
+                    std::cout << "Your output is: " << sp_irregular_out << "\n";
                 }
             }
-            else if (sp_irregular == true)
+            else if (number_form == 2) // WORD
             {
-                sp_irregular_numb_fixer();
-                std::cout << "Your output is: " << sp_irregular_out << "\n";
-            }
-        }
-        else if (number_form == 2) // WORD
-        {
-            std::cout << "What would you like in your tens? (for 21 do viente uno, not vientiuno)\n";
-            std::cin >> sp_in_10;
-            std::cout << "And the ones?\n";
-            std::cin >> sp_in_1;
-            sp_word_form();
-            if (sp_irregular != true)
-            {
-                if (sp_out_1 != "" || sp_out_10 != "")
+                std::cout << "What would you like in your tens? (for 21 do viente uno, not vientiuno)\n";
+                std::cin >> sp_in_10;
+                std::cout << "And the ones?\n";
+                std::cin >> sp_in_1;
+                sp_word_form();
+                if (sp_irregular != true)
                 {
-                    std::cout << "Your output is: " << sp_out_10 << " " << sp_out_1 << "\n";
+                    if (sp_out_1 != "" || sp_out_10 != "")
+                    {
+                        std::cout << "Your output is: " << sp_out_10 << " " << sp_out_1 << "\n";
+                    }
+                    else
+                    {
+                        std::cout << "Your output is: zero";
+                    }
                 }
-                else
+                else if (sp_irregular == true)
                 {
-                    std::cout << "Your output is: zero";
+                    sp_irregular_numb_fixer();
+                    std::cout << "Your output is: " << sp_irregular_out << "\n";
                 }
-            }
-            else if (sp_irregular == true)
-            {
-                sp_irregular_numb_fixer();
-                std::cout << "Your output is: " << sp_irregular_out << "\n";
             }
         }
     }
