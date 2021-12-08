@@ -2,8 +2,8 @@
 #include <vector>
 #include <string>
 #include <unistd.h>
-#include "cong.hpp"
-#include "numb.hpp"
+#include "finished/cong.hpp"
+#include "finished/numb.hpp"
 #include "french.hpp"
 
 // UI

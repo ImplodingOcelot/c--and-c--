@@ -6,10 +6,11 @@
 void franch();
 void frenchNumbers();
 void french_numbersF();
+void frenchAddHundred();
 
-int french_optionio, frenchIn1, frenchIn10;
-std::string frenchOut10, frenchOut1, frenchIrrOut;
-bool french_irgNum, french_has10, french_has1;
+int french_optionio, frenchIn1, frenchIn10, frenchIn100;
+std::string frenchOut100, frenchOut10, frenchOut1, frenchIrrOut;
+bool french_irgNum, french_has100, french_has10, french_has1;
 
 void franch()
 {
@@ -17,13 +18,22 @@ void franch()
     std::cin >> french_optionio;
     if (french_optionio == 1)
     {
+        std::cout << "What would you like in the hundreds place?\n";
+        std::cin >> frenchIn100;
         std::cout << "What would you like in the tens place?\n";
         std::cin >> frenchIn10;
         std::cout << "And the ones?\n";
         std::cin >> frenchIn1;
+        frenchAddHundred();
         frenchNumbers();
         if (french_irgNum != true)
         {
+            std::cout << ">>" << french_has10 << " E " << french_has100 << "\n";
+            if (french_has100 == true && french_has10 == false && french_has1 == false)
+            {
+
+                std::cout << "Your number is... " << frenchOut10 << "s\n";
+            }
             if (french_has10 == true && french_has1 == true)
             {
                 std::cout << "Your number is: " << frenchOut10 << "-" << frenchOut1 << "\n";
@@ -44,7 +54,13 @@ void franch()
         else
         {
             french_numbersF();
+            if(french_has100 != true)   {
             std::cout << "Your number is: " << frenchIrrOut << "\n";
+            }
+            else if(french_has100 == true)  {
+                frenchAddHundred();
+                std::cout << "Your number is: " << frenchOut10 << " " << frenchIrrOut << "\n";
+            }
         }
     }
     else if (french_optionio == 2)
@@ -52,36 +68,89 @@ void franch()
     }
 }
 
+void frenchAddHundred()
+{
+
+    switch (frenchIn100)
+    {
+    case 0:
+        frenchOut10 = "";
+        french_has100 = false;
+        break;
+    case 1:
+        frenchOut10 = "cent";
+        french_has100 = true;
+        break;
+    case 2:
+        frenchOut10 = "deux cent";
+        french_has100 = true;
+        break;
+    case 3:
+        frenchOut10 = "trois cent";
+        french_has100 = true;
+        break;
+    case 4:
+        frenchOut10 = "quatre cent";
+        french_has100 = true;
+        break;
+    case 5:
+        frenchOut10 = "cinq cent";
+        french_has100 = true;
+        break;
+    case 6:
+        frenchOut10 = "six cent";
+        french_has100 = true;
+        break;
+    case 7:
+        frenchOut10 = "sept cent";
+        french_has100 = true;
+        break;
+    case 8:
+        frenchOut10 = "huit cent";
+        french_has100 = true;
+        break;
+    case 9:
+        frenchOut10 = "neuf cent";
+        french_has100 = true;
+        break;
+
+    default:
+        frenchOut10 = "";
+        french_has100 = false;
+        break;
+    }
+}
 void frenchNumbers()
 {
     switch (frenchIn10)
     {
     case 0:
-        frenchOut10 = "zéro";
+        frenchOut10.append("");
         french_has10 = false;
     case 1:
-        frenchOut10 = "dix";
+        frenchOut10.append(" dix");
         french_has10 = true;
         french_irgNum = true;
         break;
     case 2:
-        frenchOut10 = "vingt";
+        frenchOut10.append(" vingt");
         french_has10 = true;
         break;
     case 3:
-        frenchOut10 = "trente";
+        frenchOut10.append(" trente");
+
         french_has10 = true;
         break;
     case 4:
-        frenchOut10 = "quarante";
+        frenchOut10.append(" quarante");
         french_has10 = true;
         break;
     case 5:
-        frenchOut10 = "cinquante";
+        frenchOut10.append(" cinquante");
         french_has10 = true;
         break;
     case 6:
-        frenchOut10 = "soixante";
+        frenchOut10.append(" soixante");
 
         french_has10 = true;
         break;
@@ -90,6 +159,7 @@ void frenchNumbers()
         french_has10 = true;
         break;
     }
+
     switch (frenchIn1)
     {
     case 1:
@@ -137,81 +207,81 @@ void frenchNumbers()
 
 void french_numbersF()
 {
-    
+
     switch (frenchIn10)
     {
     case 1:
         switch (frenchIn1)
         {
         case 1:
-            frenchIrrOut = "onze";
+            frenchIrrOut.append("onze");
             break;
         case 2:
-            frenchIrrOut = "douze";
+            frenchIrrOut.append("douze");
             break;
         case 3:
-            frenchIrrOut = "treize";
+            frenchIrrOut.append("treize");
             break;
         case 4:
-            frenchIrrOut = "quatorze";
+            frenchIrrOut.append("quatorze");
             break;
         case 5:
-            frenchIrrOut = "quinze";
+            frenchIrrOut.append("quinze");
             break;
         case 6:
-            frenchIrrOut = "seize";
+            frenchIrrOut.append("seize");
             break;
         default:
             french_irgNum = false;
             break;
         }
     case 2:
-    std::cout << "";
-    break;
+        std::cout << "";
+        break;
     case 3:
-    std::cout << "";
-    break;
+        std::cout << "";
+        break;
     case 4:
-    std::cout << "";
-    break;
+        std::cout << "";
+        break;
     case 5:
-    std::cout << "";
-    break;
+        std::cout << "";
+        break;
     case 6:
-    std::cout << "";
-    break;
+        std::cout << "";
+        break;
     case 7:
         switch (frenchIn1)
         {
         case 0:
-            frenchIrrOut = "soixante-dix";
+            frenchIrrOut.append("soixante-dix");
             break;
         case 1:
-            frenchIrrOut = "soixante-et-onze";
+            frenchIrrOut.append("soixante-et-onze");
             break;
         case 2:
-            frenchIrrOut = "soixante-douze";
+            frenchIrrOut.append("soixante-douze");
             break;
         case 3:
-            frenchIrrOut = "soixante-treize";
+            frenchIrrOut.append("soixante-treize");
             break;
         case 4:
-            frenchIrrOut = "soixante-quatorze";
+            frenchIrrOut.append("soixante-quatorze");
             break;
         case 5:
-            frenchIrrOut = "soixante-quinze";
+            frenchIrrOut.append("soixante-quinze");
             break;
         case 6:
-            frenchIrrOut = "soixante-seize";
+            frenchIrrOut.append("soixante-seize");
             break;
         case 7:
-            frenchIrrOut = "soixante-dix-sept";
+            frenchIrrOut.append("soixante-dix-sept");
             break;
         case 8:
-            frenchIrrOut = "soixante-dix-huit";
+            frenchIrrOut.append("soixante-dix-huit");
             break;
         case 9:
-            frenchIrrOut = "soixante-dix-neuf";
+            frenchIrrOut.append("soixante-dix-neuf");
             break;
         }
         break;
@@ -219,34 +289,34 @@ void french_numbersF()
         switch (frenchIn1)
         {
         case 0:
-            frenchIrrOut = "quatre-vingts";
+            frenchIrrOut.append("quatre-vingts");
             break;
         case 1:
-            frenchIrrOut = "quatre-vingt-un";
+            frenchIrrOut.append("quatre-vingt-un");
             break;
         case 2:
-            frenchIrrOut = "quatre-vingt-deux";
+            frenchIrrOut.append("quatre-vingt-deux");
             break;
         case 3:
-            frenchIrrOut = "quatre-vingt-trois";
+            frenchIrrOut.append("quatre-vingt-trois");
             break;
         case 4:
-            frenchIrrOut = "quatre-vingt-quatre";
+            frenchIrrOut.append("quatre-vingt-quatre");
             break;
         case 5:
-            frenchIrrOut = "quatre-vingt-cinq";
+            frenchIrrOut.append("quatre-vingt-cinq");
             break;
         case 6:
-            frenchIrrOut = "quatre-vingt-six";
+            frenchIrrOut.append("quatre-vingt-six");
             break;
         case 7:
-            frenchIrrOut = "quatre-vingt-sept";
+            frenchIrrOut.append("quatre-vingt-sept");
             break;
         case 8:
-            frenchIrrOut = "quatre-vingt-huit";
+            frenchIrrOut.append("quatre-vingt-huit");
             break;
         case 9:
-            frenchIrrOut = "quatre-vingt-neuf";
+            frenchIrrOut.append("quatre-vingt-neuf");
             break;
         }
         break;
@@ -254,34 +324,34 @@ void french_numbersF()
         switch (frenchIn1)
         {
         case 0:
-            frenchIrrOut = "quatre-vingt-dix";
+            frenchIrrOut.append("quatre-vingt-dix");
             break;
         case 1:
-            frenchIrrOut = "quatre-vingt-onze";
+            frenchIrrOut.append("quatre-vingt-onze");
             break;
         case 2:
-            frenchIrrOut = "quatre-vingt-douze";
+            frenchIrrOut.append("quatre-vingt-douze");
             break;
         case 3:
-            frenchIrrOut = "quatre-vingt-treize";
+            frenchIrrOut.append("quatre-vingt-treize");
             break;
         case 4:
-            frenchIrrOut = "quatre-vingt-quatorze";
+            frenchIrrOut.append("quatre-vingt-quatorze");
             break;
         case 5:
-            frenchIrrOut = "quatre-vingt-quinze";
+            frenchIrrOut.append("quatre-vingt-quinze");
             break;
         case 6:
-            frenchIrrOut = "quatre-vingt-seize";
+            frenchIrrOut.append("quatre-vingt-seize");
             break;
         case 7:
-            frenchIrrOut = "quatre-vingt-dix-sept";
+            frenchIrrOut.append("quatre-vingt-dix-sept");
             break;
         case 8:
-            frenchIrrOut = "quatre-vingt-dix-huit";
+            frenchIrrOut.append("quatre-vingt-dix-huit");
             break;
         case 9:
-            frenchIrrOut = "quatre-vingt-dix-neuf";
+            frenchIrrOut.append("quatre-vingt-dix-neuf");
             break;
         }
         break;
