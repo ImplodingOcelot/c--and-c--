@@ -4,31 +4,43 @@
 #include <unistd.h>
 #include "cong.hpp"
 #include "numb.hpp"
+#include "french.hpp"
 
 // UI
-std::string gui_using_choice, gui_exit;
+std::string gui_using_choice, gui_exit, gui_lang;
 
 int main()
 {
-    std::cout << "Opening Spanish Translator\n";
+    std::cout << "Opening the Conjugator\n";
+    sleep(1);
+    std::cout << "Done!\n";
+    std::cout << "Opening the numbers\n";
+    sleep(1);
+    std::cout << "Done!\n";
     std::cout << "This program is created by ImplodingOcelot <zott211@gmail.com>\n";
-    sleep(2);
-    std::cout << "Loading Sucess!\n";
-    std::cout << "If you want to exit- type in anything not secified as a choice.\n";
+    std::cout << "If you want to exit type in anything not specified as a choice.\n";
+    std::cout << "What language would you like to turn english in or out of?\n(s for spanish, f for french)\n";
+    std::cin >> gui_lang;
     sleep(1);
-    std::cout << "What feature would you like to use?\n";
-    sleep(1);
-    std::cout << "c for conjugator or n for numeric.\n";
-    std::cin >> gui_using_choice;
-    if (gui_using_choice == "c" || gui_using_choice == "C")
+    if (gui_lang == "s")
     {
-        conjugator();
+        std::cout << "What feature would you like to use?\n";
+        sleep(1);
+        std::cout << "c for conjugator or n for numeric.\n";
+        std::cin >> gui_using_choice;
+        if (gui_using_choice == "c" || gui_using_choice == "C")
+        {
+            conjugator();
+        }
+        else if (gui_using_choice == "n" || gui_using_choice == "N")
+        {
+            numbers();
+        }
     }
-    else if (gui_using_choice == "n" || gui_using_choice == "N")
-    {
-        numbers();
+    else if(gui_lang == "f")    {
+        franch();
     }
-    else if (gui_using_choice == "MorayEel")
+    else if (gui_lang == "MorayEel")
     {
         std::cout
             << "....................................................................................................\n"
