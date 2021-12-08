@@ -1,3 +1,8 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <unistd.h>
+
 void conjugator_irregularity_fixer();
 void conjugator_past_irregularity_fixer();
 void conjugator_future_irregularity_fixer();

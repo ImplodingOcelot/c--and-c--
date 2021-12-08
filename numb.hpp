@@ -1,3 +1,8 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <unistd.h>
+
 // numbers
 
 // Universals for numbers
