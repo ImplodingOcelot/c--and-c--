@@ -1,3 +1,4 @@
+// coded in c-pp
 #include <iostream>
 #include <vector>
 #include <string>
@@ -11,7 +12,7 @@ std::string gui_using_choice, gui_exit, gui_lang;
 
 int main()
 {
-    std::cout << "Opening the Conjugator\n";
+    std::cout << "Opening the Conjugator";
     sleep(1);
     std::cout << "Done!\n";
     std::cout << "Opening the numbers\n";
